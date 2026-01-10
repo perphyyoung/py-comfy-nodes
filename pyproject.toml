@@ -1,0 +1,10 @@
+[project]
+name = "FloatToString"
+description = "ComfyUI node to convert float to string with decimal places control"
+authors = [{ name = "perphyyoung" }]
+version = "1.0.0"
+requires-python = ">=3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
