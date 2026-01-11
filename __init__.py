@@ -8,8 +8,8 @@ py-comfy-nodes 项目初始化文件
 3. 设置前端代码目录路径
 """
 
-# 从 nodes 模块导入 FloatToString 节点类
-from .nodes import FloatToString
+# 从 py-FloatToString 模块导入 FloatToString 节点类
+from .py-FloatToString import FloatToString
 
 # 节点类映射字典
 # 键：节点注册名称（在工作流 JSON 中使用）

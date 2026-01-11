@@ -77,7 +77,7 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
 ```
 py-comfy-nodes/
 ├── __init__.py        # 项目初始化和节点注册
-├── nodes.py           # 自定义节点定义
+├── py-FloatToString.py           # 自定义节点定义
 ├── js/
 │   ├── NodeAlign.js           # 节点对齐工具主逻辑
 │   └── NodeAlignConstants.js  # SVG 图标和 CSS 样式定义
@@ -88,7 +88,7 @@ py-comfy-nodes/
 
 ### 添加新节点
 
-1. 在 `nodes.py` 文件中创建新的节点类
+1. 在 `py-FloatToString.py` 文件中创建新的节点类（或创建新的模块文件）
 2. 在 `__init__.py` 文件中注册新节点
 3. 更新 `NODE_CLASS_MAPPINGS` 和 `NODE_DISPLAY_NAME_MAPPINGS`
 
