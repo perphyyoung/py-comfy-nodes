@@ -8,14 +8,15 @@ py-comfy-nodes 项目初始化文件
 3. 设置前端代码目录路径
 """
 
-# 从 py_FloatToString 模块导入 FloatToString 节点类
 from .py_FloatToString import FloatToString
+from .py_PromptFromFile import PromptPyFromFile
 
 # 节点类映射字典
 # 键：节点注册名称（在工作流 JSON 中使用）
 # 值：实际的节点类
 NODE_CLASS_MAPPINGS = {
     "FloatToString": FloatToString,  # 浮点数转字符串节点
+    "PromptPyFromFile": PromptPyFromFile,  # 从 pyPrompt.yaml 文件读取 prompt 节点
 }
 
 # 节点显示名称映射字典
@@ -23,6 +24,7 @@ NODE_CLASS_MAPPINGS = {
 # 值：在 ComfyUI 界面中显示的名称
 NODE_DISPLAY_NAME_MAPPINGS = {
     "FloatToString": "py-utils: Float to String",  # 节点显示名称，包含分类前缀
+    "PromptPyFromFile": "py-utils: Prompt Py From File",  # 节点显示名称，包含分类前缀
 }
 
 # 前端代码目录路径
