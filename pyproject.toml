@@ -1,8 +1,8 @@
 [project]
-name = "FloatToString"
-description = "ComfyUI node to convert float to string with decimal places control"
+name = "py-comfy-nodes"
+description = "ComfyUI custom nodes including Float to String and Prompt From File"
 authors = [{ name = "perphyyoung" }]
-version = "1.0.0"
+version = "1.0.1"
 requires-python = ">=3.8"
 
 [build-system]

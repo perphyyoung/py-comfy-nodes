@@ -14,6 +14,13 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
   - decimal_places: 保留的小数位数（范围：0 到 10）
 - **输出**：转换后的字符串
 
+#### Prompt Py From File 节点
+- **分类**：py-utils
+- **功能**：从 pyPrompt.yaml 文件读取 prompt 文本
+- **输入**：
+  - key: 从 pyPrompt.yaml 文件中选择的键名
+- **输出**：所选键对应的 prompt 文本
+
 ### 2. 节点对齐工具
 
 提供直观的节点布局和对齐功能，帮助您轻松组织工作流中的节点。
@@ -42,6 +49,12 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
 1. 在 ComfyUI 界面中搜索 "py-utils: Float to String" 节点
 2. 连接浮点数输入和小数位数参数
 3. 节点将输出格式化的字符串
+
+### Prompt Py From File 节点
+
+1. 在 ComfyUI 界面中搜索 "py-utils: Prompt Py From File" 节点
+2. 从下拉菜单中选择 pyPrompt.yaml 文件中的一个键名
+3. 节点将输出所选键对应的 prompt 文本
 
 ### 节点对齐工具
 
@@ -78,6 +91,9 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
 py-comfy-nodes/
 ├── __init__.py        # 项目初始化和节点注册
 ├── py_FloatToString.py           # 自定义节点定义
+├── py_PromptFromFile.py          # 从 YAML 文件读取 prompt 的节点定义
+├── yaml_folder/
+│   └── pyPrompt.yaml            # 存储 prompt 文本的 YAML 文件
 ├── js/
 │   ├── NodeAlign.js           # 节点对齐工具主逻辑
 │   └── NodeAlignConstants.js  # SVG 图标和 CSS 样式定义
@@ -115,5 +131,5 @@ py-comfy-nodes/
 
 ---
 
-**版本**: 1.0.0
-**更新日期**: 2026-01-11
+**版本**: 1.0.1
+**更新日期**: 2026-01-22
