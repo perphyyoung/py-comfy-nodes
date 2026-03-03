@@ -68,6 +68,20 @@ app.registerExtension({
                     };
                 });
                 
+                // 从节点配置中读取 string_count 值
+                const configure = this.configure;
+                this.configure = function(info) {
+                    configure.apply(this, arguments);
+                    // 在配置完成后，根据保存的 string_count 更新可见性
+                    if (stringCountWidget && info && info.widgets_values) {
+                        const stringCountIndex = this.widgets.findIndex(w => w.name === "string_count");
+                        if (stringCountIndex !== -1 && info.widgets_values[stringCountIndex] !== undefined) {
+                            stringCountWidget.value = info.widgets_values[stringCountIndex];
+                        }
+                    }
+                    updateStringWidgetsVisibility();
+                };
+                
                 // 初始化可见性
                 updateStringWidgetsVisibility();
                 
