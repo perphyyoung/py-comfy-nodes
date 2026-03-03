@@ -14,6 +14,7 @@ from .py_MultiKeys import MultiKeys
 from .py_FileReader import FileReader
 from .py_FileWriter import FileWriter
 from .py_TextConcatMulti import TextConcatMulti
+from .py_PromptList import PromptList
 
 # 节点类映射字典
 # 键：节点注册名称（在工作流 JSON 中使用）
@@ -25,6 +26,7 @@ NODE_CLASS_MAPPINGS = {
     "FileReader": FileReader,  # 文件读取节点
     "FileWriter": FileWriter,  # 文件写入节点
     "TextConcatMulti": TextConcatMulti,  # 多文本拼接节点
+    "PromptList": PromptList,  # 提示列表节点
 }
 
 # 节点显示名称映射字典
@@ -37,6 +39,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "FileReader": "py-utils: File Reader",  # 节点显示名称，包含分类前缀
     "FileWriter": "py-utils: File Writer",  # 节点显示名称，包含分类前缀
     "TextConcatMulti": "py-utils: Text Concat Multi",  # 节点显示名称，包含分类前缀
+    "PromptList": "py-utils: Prompt List",  # 节点显示名称，包含分类前缀
 }
 
 # 前端代码目录路径
