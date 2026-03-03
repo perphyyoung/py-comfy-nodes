@@ -21,6 +21,47 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
   - key: 从 pyPrompt.yaml 文件中选择的键名
 - **输出**：所选键对应的 prompt 文本
 
+#### Prompt List 节点
+- **分类**：py-utils
+- **功能**：从多个提示文本中选择一个进行输出，支持动态指定字符串数量
+- **输入**：
+  - string_1 ~ string_10: 多行文本输入框（最多10个）
+  - string_count: 指定要显示的字符串数量（范围：1 到 10）
+  - index: 选择要输出的字符串索引（范围：1 到 10，带滑杆控件）
+- **输出**：selected_string: 选定的字符串
+- **特性**：
+  - 每个字符串输入框左侧显示行号
+  - 通过 string_count 动态控制显示的输入框数量
+  - 点击 "Update UI" 按钮更新界面
+  - index 支持滑杆拖动选择
+
+#### Text Concat Multi 节点
+- **分类**：py-utils
+- **功能**：将多个文本内容拼接在一起
+- **输入**：
+  - inputcount: 输入文本的数量
+  - text_1 ~ text_n: 要拼接的文本
+  - separator: 分隔符
+- **输出**：result: 拼接后的文本
+
+#### Multi Keys 节点
+- **分类**：py-utils
+- **功能**：动态键值对节点
+- **输入**：可配置的键值对
+- **输出**：根据配置输出
+
+#### File Reader 节点
+- **分类**：py-utils
+- **功能**：读取文件内容
+- **输入**：文件路径
+- **输出**：文件内容
+
+#### File Writer 节点
+- **分类**：py-utils
+- **功能**：写入文件内容
+- **输入**：文件路径和内容
+- **输出**：写入状态
+
 ### 2. 节点对齐工具
 
 提供直观的节点布局和对齐功能，帮助您轻松组织工作流中的节点。
@@ -56,6 +97,24 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
 2. 从下拉菜单中选择 pyPrompt.yaml 文件中的一个键名
 3. 节点将输出所选键对应的 prompt 文本
 
+### Prompt List 节点
+
+1. 在 ComfyUI 界面中搜索 "py-utils: Prompt List" 节点
+2. 在 string_1 ~ string_n 输入框中输入提示文本
+3. 设置 string_count 指定要显示的字符串数量
+4. 使用 index 滑杆选择要输出的字符串索引
+5. 点击 "Update UI" 按钮更新界面（保持节点尺寸不变）
+6. 节点将输出选定的字符串
+
+### Text Concat Multi 节点
+
+1. 在 ComfyUI 界面中搜索 "py-utils: Text Concat Multi" 节点
+2. 设置 inputcount 指定输入数量
+3. 点击 "Update inputs" 按钮更新输入
+4. 连接要拼接的文本
+5. 设置分隔符
+6. 节点将输出拼接后的文本
+
 ### 节点对齐工具
 
 1. 选择多个节点
@@ -89,47 +148,27 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
 
 ```
 py-comfy-nodes/
-├── __init__.py        # 项目初始化和节点注册
-├── py_FloatToString.py           # 自定义节点定义
-├── py_PromptFromFile.py          # 从 YAML 文件读取 prompt 的节点定义
-├── yaml_folder/
-│   └── pyPrompt.yaml            # 存储 prompt 文本的 YAML 文件
+├── __init__.py                 # 项目初始化和节点注册
+├── py_FloatToString.py         # 浮点数转字符串节点
+├── py_PromptFromFile.py        # 从 YAML 文件读取 prompt 节点
+├── py_PromptList.py            # 提示列表选择节点
+├── py_TextConcatMulti.py       # 多文本拼接节点
+├── py_MultiKeys.py             # 动态键值对节点
+├── py_FileReader.py            # 文件读取节点
+├── py_FileWriter.py            # 文件写入节点
 ├── js/
-│   ├── NodeAlign.js           # 节点对齐工具主逻辑
-│   └── NodeAlignConstants.js  # SVG 图标和 CSS 样式定义
-└── README.md          # 项目说明文档
+│   ├── NodeAlign.js            # 节点对齐工具主逻辑
+│   ├── NodeAlignConstants.js   # SVG 图标和 CSS 样式定义
+│   ├── TextConcatMulti.js      # 多文本拼接节点前端逻辑
+│   ├── PromptList.js           # 提示列表节点前端逻辑
+│   └── widgethider.js          # Widget 显示控制
+└── README.md                   # 项目说明文档
 ```
 
-## 开发说明
+## 更新日志
 
-### 添加新节点
-
-1. 在 `py_FloatToString.py` 文件中创建新的节点类（或创建新的模块文件）
-2. 在 `__init__.py` 文件中注册新节点
-3. 更新 `NODE_CLASS_MAPPINGS` 和 `NODE_DISPLAY_NAME_MAPPINGS`
-
-### 自定义对齐功能
-
-修改 `js/NodeAlign.js` 文件中的 `ALIGNMENT_CONFIG` 对象和相关方法。
-
-## 兼容性
-
-- 支持 ComfyUI v1.0 及以上版本
-- 支持现代浏览器（Chrome、Firefox、Safari、Edge）
-
-## 许可证
-
-本项目采用 MIT 许可证，可自由使用和修改。
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request 来改进项目！
-
-## 联系方式
-
-如有问题或建议，请通过 GitHub Issues 反馈。
-
----
-
-**版本**: 1.0.1
-**更新日期**: 2026-01-22
+### 最新版本
+- 新增 Prompt List 节点，支持多行文本选择和动态数量控制
+- 新增行号显示功能
+- 新增 Update UI 按钮，更新界面时保持节点尺寸
+- index 参数支持滑杆控件
