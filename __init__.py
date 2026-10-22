@@ -15,6 +15,7 @@ from .py_FileReader import FileReader
 from .py_FileWriter import FileWriter
 from .py_TextConcatMulti import TextConcatMulti
 from .py_PromptList import PromptList
+from .py_Xyplot import XyplotLoraWeights
 
 # 节点类映射字典
 # 键：节点注册名称（在工作流 JSON 中使用）
@@ -27,6 +28,7 @@ NODE_CLASS_MAPPINGS = {
     "FileWriter": FileWriter,  # 文件写入节点
     "TextConcatMulti": TextConcatMulti,  # 多文本拼接节点
     "PromptList": PromptList,  # 提示列表节点
+    "XyplotLoraWeights": XyplotLoraWeights,  # 同一 LoRA 多权重 XY 轴节点
 }
 
 # 节点显示名称映射字典
@@ -34,12 +36,13 @@ NODE_CLASS_MAPPINGS = {
 # 值：在 ComfyUI 界面中显示的名称
 NODE_DISPLAY_NAME_MAPPINGS = {
     "FloatToString": "py-utils: Float to String",  # 节点显示名称，包含分类前缀
-    "PromptPyFromFile": "py-utils: Prompt Py From File",  # 节点显示名称，包含分类前缀
-    "MultiKeys": "py-utils: Multi Keys",  # 节点显示名称，包含分类前缀
-    "FileReader": "py-utils: File Reader",  # 节点显示名称，包含分类前缀
-    "FileWriter": "py-utils: File Writer",  # 节点显示名称，包含分类前缀
-    "TextConcatMulti": "py-utils: Text Concat Multi",  # 节点显示名称，包含分类前缀
-    "PromptList": "py-utils: Prompt List",  # 节点显示名称，包含分类前缀
+    "PromptPyFromFile": "py-utils: Prompt Py From File",
+    "MultiKeys": "py-utils: Multi Keys",
+    "FileReader": "py-utils: File Reader",
+    "FileWriter": "py-utils: File Writer",
+    "TextConcatMulti": "py-utils: Text Concat Multi",
+    "PromptList": "py-utils: Prompt List",
+    "XyplotLoraWeights": "py-utils: XYPlot LoRA Weights",
 }
 
 # 前端代码目录路径

@@ -50,6 +50,21 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
 - **输入**：可配置的键值对
 - **输出**：根据配置输出
 
+#### XYPlot LoRA Weights 节点
+- **分类**：py-utils
+- **功能**：只选择一个 LoRA，自动生成「同一 LoRA、不同权重」的 XY 轴取值，配合 ComfyUI-Easy-Use 的 XY Plot 使用
+- **输入**：
+  - lora_name: 只选一次的目标 LoRA
+  - weight_mode: `List`（手写权重列表）或 `Range`（按数量等距生成）
+  - weights: List 模式下的权重，用分号、逗号或换行分隔
+  - batch_count / first_weight / last_weight: Range 模式下的档位数与首尾权重
+  - weight_target: 权重作用对象 `model+clip` / `model` / `clip`
+  - fixed_weight: 未被扫描的一方固定使用的强度
+  - label_suffix（可选）: 追加到 XY 图标签后的文字
+- **输出**：
+  - X or Y: `X_Y` 类型，直接连到 easy-use 的 XY Plot（X/Y 输入）
+  - weights info: 本次生成的权重摘要（调试用）
+
 #### File Reader 节点
 - **分类**：py-utils
 - **功能**：读取文件内容
@@ -115,6 +130,19 @@ ComfyUI 的自定义节点和工具集合，提供实用的节点功能和节点
 5. 设置分隔符
 6. 节点将输出拼接后的文本
 
+### XYPlot LoRA Weights 节点
+
+1. 在 ComfyUI 界面中搜索 "py-utils: XYPlot LoRA Weights" 节点
+2. 在 `lora_name` 中选择要测试的 LoRA（只需选一次）
+3. 选择生成方式：
+   - `List`：在 `weights` 中写权重，例如 `0.2; 0.5; 0.8`（分号、逗号、换行均可）
+   - `Range`：设置 `batch_count`、`first_weight`、`last_weight`，等距生成
+4. 需要时调整 `weight_target`（默认作用于 model）与 `fixed_weight`
+5. 将输出连到 easy-use 的 `easy XYPlotAdvanced` 节点的 `X`（或 `Y`）输入，运行即可得到权重对比图
+
+> 注意：easy-use 的 XY Plot 在 X、Y 同时为 LoRA 轴时会把两个 LoRA 叠加应用，
+> 因此同一个 LoRA 不要同时接到 X 和 Y 上，另一个轴建议用 CFG / Steps / 采样器等。
+
 ### 节点对齐工具
 
 1. 选择多个节点
@@ -156,11 +184,13 @@ py-comfy-nodes/
 ├── py_MultiKeys.py             # 动态键值对节点
 ├── py_FileReader.py            # 文件读取节点
 ├── py_FileWriter.py            # 文件写入节点
+├── py_Xyplot.py                # 同一 LoRA 多权重 XY 轴节点
 ├── js/
 │   ├── NodeAlign.js            # 节点对齐工具主逻辑
 │   ├── NodeAlignConstants.js   # SVG 图标和 CSS 样式定义
 │   ├── TextConcatMulti.js      # 多文本拼接节点前端逻辑
 │   ├── PromptList.js           # 提示列表节点前端逻辑
+│   ├── XyplotLoraWeights.js    # XYPlot LoRA 权重节点前端逻辑
 │   └── widgethider.js          # Widget 显示控制
 └── README.md                   # 项目说明文档
 ```
@@ -168,6 +198,7 @@ py-comfy-nodes/
 ## 更新日志
 
 ### 最新版本
+- 新增 XYPlot LoRA Weights 节点，同一 LoRA 只需选择一次即可扫描多档权重
 - 新增 Prompt List 节点，支持多行文本选择和动态数量控制
 - 新增行号显示功能
 - 新增 Update UI 按钮，更新界面时保持节点尺寸
